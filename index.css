@@ -40,22 +40,29 @@ h1 {
     gap: 2px;
     margin: 20px auto;
     background-color: var(--board-bg);
-    padding: 10px;
+    padding: 8px;
     border-radius: 12px;
-    max-width: 90vw;
+
+    width: 90vmin;   /* ✅ board scales to fit viewport */
+    height: 90vmin;  /* ensures it's always square */
+    max-width: 600px; /* prevent it from getting too big on desktops */
+    max-height: 600px;
 }
 
 .cell {
-    aspect-ratio: 1 / 1; /* keeps cells square */
+    width: 70%;
+    height: 70%;
     text-align: center;
-    font-size: clamp(14px, 2.5vw, 20px); /* responsive font */
+    font-size: clamp(12px, 2.5vmin, 20px); /* ✅ font adjusts with board size */
     border: 1px solid var(--cell-border);
     outline: none;
     background-color: #fff;
     color: var(--text-color);
     transition: all 0.3s ease;
-    border-radius: 6px;
+    border-radius: 4px;
 }
+
+
 
 body.dark .cell {
     background-color: #1e293b;
@@ -103,10 +110,10 @@ button:hover {
 }
 
 /* 📱 Mobile Responsiveness */
+/* 📱 Mobile */
 @media (max-width: 600px) {
     #sudoku-board {
-        grid-template-columns: repeat(9, minmax(20px, 1fr));
-        max-width: 95vw;
+        max-width: 95vw; /* shrink board for small screens */
     }
 
     button {
@@ -114,5 +121,19 @@ button:hover {
         max-width: 300px;
         display: block;
         margin: 8px auto;
+    }
+}
+
+/* 💻 Medium screens (tablets / small laptops) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    #sudoku-board {
+        max-width: 420px; /* prevent oversizing */
+    }
+}
+
+/* 🖥️ Large screens */
+@media (min-width: 1025px) {
+    #sudoku-board {
+        max-width: 480px; /* keep it neat on laptops & desktops */
     }
 }
