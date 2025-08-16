@@ -123,3 +123,14 @@ solveBtn.addEventListener("click", () => {
 });
 
 createBoard();
+const themeToggleBtn = document.getElementById("theme-toggle");
+
+themeToggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        themeToggleBtn.textContent = "☀️ Light Mode";
+    } else {
+        themeToggleBtn.textContent = "🌙 Dark Mode";
+    }
+});
